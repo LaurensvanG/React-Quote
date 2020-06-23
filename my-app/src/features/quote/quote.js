@@ -30,13 +30,13 @@ class Presentational extends React.Component {
 
     return (
     <Container className="full-height justify-content-around" fluid>
-        <Row id="#quoteBox" className="justify-content-center align-items-center full-height">
+        <Row id="quoteBox" className="justify-content-center align-items-center full-height">
 
             <Col lg={3} />
 
             <Col lg={6}>
               <Card>
-                <div id="#text" className="text-center full-height">
+                <div id="text" className="text-center full-height">
                   <h1>{this.state.quote ? this.state.quote.text : ""}</h1>
                 </div>
                 <div id="author" className="text-right">
