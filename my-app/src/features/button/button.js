@@ -1,10 +1,13 @@
 import React from "react";
 import styles from './Button.module.sass';
+import Button from 'react-bootstrap/Button';
 
-export function Button() {
+export default function NewButton() {
     return (
-      <div>
-        <button className="btn btn-primary">Test</button>
+      <div> 
+        <Button variant="primary" id={styles.quoteButton}>
+            Quote
+        </Button>
       </div>
     )
   }
