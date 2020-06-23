@@ -1,6 +1,7 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "quote-app",
+  "version": "1.0.0",
+  "author": "Laurens van Giersbergen",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",

@@ -1,16 +1,22 @@
 import React from 'react';
 import './App.sass';
-import { Counter } from './features/counter/Counter';
-// import { Button } from "./features/button/button"
-
-import Button from 'react-bootstrap/Button';
+import NewButton from "./features/button/button"
+import {Quote} from "./features/quote/quote"
+import store from "./app/store"
+import { apiCall } from "./features/quote/quoteApi"
 
 
 function App() {
+  // Call the quotes api to get quotes async
+  store.dispatch(apiCall());
+
+  // Render the app
   return (
     <div className="App">
       <header className="App-header">
-        <Button />
+        
+        <NewButton />
+        <Quote />
       </header>
     </div>
   );
