@@ -14,15 +14,15 @@ function App() {
   // Render the app
   return (
     <div id="App">
-      <header className="App-header">
+      <header className="app-header">
       </header>
-      <body>
+      <div>
         <Container className="full-height flex-column justify-content-around">
           <NewButton />
           <Quote />
         </Container>
         
-      </body>
+      </div>
     </div>
   );
 }
