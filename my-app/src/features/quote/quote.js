@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import "../../styles/Quote.module.sass"
+import { Container, Row, Col, Card, Button } from "react-bootstrap"
 
 
 class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quote: ""
+      quote: ''
     }
 
     this.getQuote = this.getQuote.bind(this)
@@ -27,23 +29,30 @@ class Presentational extends React.Component {
     console.log("All quotes", this.state.quotes, this.state.quote)
 
     return (
-    <div className="row align-items-center">
-      
-      <div className="col-3" />
-      <div id="quote-box" className="card col-6">
-        <div id="text" className="text-center">
-          <h1>{this.state.quote ? this.state.quote.text : ""}</h1>
-        </div>
-        <div id="author" className="text-right">
-          <h4>- {this.state.quote ? this.state.quote.author : ""}</h4>
-        </div>
-        <button className="btn btn-primary col-2 justify-self-end" onClick={this.getQuote}>
-          New quote
-        </button>
-      </div>
-      <div className="col-3" />
-      
-      </div>
+    <Container className="full-height justify-content-around" fluid>
+        <Row id="#quoteBox" className="justify-content-center align-items-center full-height">
+
+            <Col lg={3} />
+
+            <Col lg={6}>
+              <Card>
+                <div id="#text" className="text-center full-height">
+                  <h1>{this.state.quote ? this.state.quote.text : ""}</h1>
+                </div>
+                <div id="author" className="text-right">
+                  <h4>- {this.state.quote ? this.state.quote.author : ""}</h4>
+                </div>
+                <Button className="btn-primary col-2 justify-self-end" onClick={this.getQuote}>
+                  New quote
+                </Button>
+              </Card>
+
+            </Col>
+
+            <Col lg={3} />
+
+        </Row>
+    </Container>
     )
   }
 }
