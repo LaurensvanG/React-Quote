@@ -1,0 +1,7 @@
+@import './functions';
+@import "../colorDefinitions";
+
+$dark: (
+  textPrimary: color(black),
+  textSecondary: color(white)
+);

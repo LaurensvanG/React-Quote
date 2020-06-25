@@ -14,18 +14,19 @@ class Presentational extends React.Component {
     this.state = {
       quote: ''
     }
-
-    this.getQuote = this.getQuote.bind(this)
+    this.getQuote = this.getQuote.bind(this);
   }
   
   // Set the "quote" in state to a random quote from "props.quotes"
-  getQuote = () => { 
-    return (this.setState((state, props) => {
-      return {quote: props.quotes[Math.floor(Math.random() * props.quotes.length)],
-      quotes: state.quotes}
-    })
-    )
+  componentDidMount() {
+    
   }
+
+  getQuote = () => this.setState((state, props) => {
+    return {quote: props.quotes[Math.floor(Math.random() * props.quotes.length)],
+    quotes: state.quotes}
+  })
+  
 
   // Get a first quote as soon as the quotes have been fetched and passed through the prop
   componentDidUpdate(prevProps) {
@@ -75,7 +76,7 @@ class Presentational extends React.Component {
 
                     </Row>
                     
-                    <Button className="btn-primary" onClick={this.getQuote}>
+                    <Button className="btn-lg" onClick={this.getQuote}>
                       New quote
                     </Button>
                   </Row>

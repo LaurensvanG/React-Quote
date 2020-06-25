@@ -1,0 +1,16 @@
+@import "./dark";
+
+@debug map-get($map: $dark, $key: textPrimary);
+
+$pickledBluewood: 
+    map-merge(
+        $dark, 
+        (
+            "backgroundPrimary": color(pickledBluewood), 
+            "backgroundSecondary": color(mountainMeadow), 
+            "borderPrimary": color(mountainMeadow), 
+            "borderSecondary": color(pickledBluewood)
+        )
+    );
+
+// @debug map.get($pickledBluewood, "textPrimary");
