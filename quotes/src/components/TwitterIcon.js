@@ -21,13 +21,13 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-export default TwitterButton = () => {
+export default (props) => {
     const classes = useStyles()
 
     return (
-        <IconButton aria-label="Twitter" className="mr-2 btn-lg" title="Tweet the current quote" target="_blank"
-            ref={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp
-            &text=${this.state.quote ? `"${this.state.quote.text}" — ${this.state.quote.author}` : ""}`}>
+        <IconButton aria-label="Twitter" className="mr-2 btn-lg" title="Tweet the current quote" target="_blank" rel="noopener"
+            href={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp
+            &text=${props.quote ? `"${props.quote.text}" — ${props.quote.author}` : ""}`}>
     
             <Twitter />
         </IconButton>
