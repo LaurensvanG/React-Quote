@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 export default (props) => {
     const classes = useStyles()
 
-    console.log(props.quote)
     return (
         <Container>
             <Typography variant="h1">

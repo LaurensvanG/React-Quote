@@ -32,7 +32,6 @@ class Presentational extends React.Component {
   }
 
   render () {
-    console.log("Quote state", this.state.quote)
     return (
     <Container className="full-height justify-content-around" fluid>
       <Paper elevation={3} id="quoteBox">
