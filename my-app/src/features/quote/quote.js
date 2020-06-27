@@ -1,18 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
+import "../../styles/Quote.sass"
+import { Container, Row, Col, Card, Button, ButtonToolbar, ButtonGroup } from "react-bootstrap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons'
+
 
 
 class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quote: ""
+      quote: ''
     }
 
     this.getQuote = this.getQuote.bind(this)
   }
-
   
+  // Set the "quote" in state to a random quote from "props.quotes"
   getQuote = () => { 
     return (this.setState((state, props) => {
       return {quote: props.quotes[Math.floor(Math.random() * props.quotes.length)],
@@ -21,29 +27,64 @@ class Presentational extends React.Component {
     )
   }
 
+  // Get a first quote as soon as the quotes have been fetched and passed through the prop
+  componentDidUpdate(prevProps) {
+    if(prevProps.quotes !== this.props.quotes)
+    if(this.props.quotes !== undefined && this.props.quotes.length !== 0) this.getQuote()
+  }
+
   render () {
-    // useSelector with reducer "state.quote"
-    // const quotes = useSelector(state => state.quote.quotes)
-    console.log("All quotes", this.state.quotes, this.state.quote)
 
     return (
-    <div className="row align-items-center">
-      
-      <div className="col-3" />
-      <div id="quote-box" className="card col-6">
-        <div id="text" className="text-center">
-          <h1>{this.state.quote ? this.state.quote.text : ""}</h1>
-        </div>
-        <div id="author" className="text-right">
-          <h4>- {this.state.quote ? this.state.quote.author : ""}</h4>
-        </div>
-        <button className="btn btn-primary col-2 justify-self-end" onClick={this.getQuote}>
-          New quote
-        </button>
-      </div>
-      <div className="col-3" />
-      
-      </div>
+    <Container className="full-height justify-content-around" fluid>
+        <Row className="justify-content-center align-items-center full-height">
+
+            <Col />
+
+            <Col md={10} xl={8}>
+              <Card id="quoteBox">
+                
+                <Col id="text" className="text-center full-height">
+                    <h1>
+                      <FontAwesomeIcon id="quote-icon" icon={faQuoteLeft} size="sm" /> 
+                      &nbsp;
+                      {this.state.quote ? this.state.quote.text : ""}
+                    </h1>
+
+                    <div id="author" className="text-right">
+                      <h4>— {this.state.quote ? this.state.quote.author : ""}</h4>
+                    </div>
+                </Col>
+
+                <Col >
+                  <Row className="justify-content-between">
+                    <Row id="socials btn-group-lg btn-group-vertical">
+
+                      <Button id="tweet-quote" className="mr-2 btn-lg" title="Tweet the current quote" target="_blank"
+                        href={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp
+                          &text=${this.state.quote ? `"${this.state.quote.text}" — ${this.state.quote.author}` : ""}`}>
+                        <FontAwesomeIcon icon={faTwitter} className="icon" />
+                      </Button>
+
+                      <Button id="tumblr" className="btn-lg" title="Post the current quote on Tumblr" target="_blank"
+                        href={"https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=" + 
+                          (this.state.quote ? this.state.quote.author : "") + 
+                          "&content=" + (this.state.quote ? this.state.quote.text : "") + "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button"}>
+                        <FontAwesomeIcon icon={faTumblr} className="icon" />
+                      </Button>
+
+                    </Row>
+                    
+                    <Button className="btn-primary" onClick={this.getQuote}>
+                      New quote
+                    </Button>
+                  </Row>
+                </Col>
+              </Card>
+            </Col>
+            <Col />
+        </Row>
+    </Container>
     )
   }
 }
