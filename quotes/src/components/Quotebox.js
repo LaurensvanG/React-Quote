@@ -1,9 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-// import "../../styles/Quote.sass"
-import { Paper, Grid, Button, Container } from "@material-ui/core";
+import { Paper, Grid, Button, Container, createStyles, withStyles, Box } from "@material-ui/core";
 import SocialIcons from "./SocialIcons";
 import QuoteText from "./QuoteText";
+
+const styles = theme => createStyles({
+  marginGrid: {
+    flexGrow: 1,
+  }
+})
 
 
 class Presentational extends React.Component {
@@ -32,24 +37,28 @@ class Presentational extends React.Component {
   }
 
   render () {
+
     return (
-    <Container className="full-height justify-content-around" fluid>
+    <Container>
       <Paper elevation={3} id="quoteBox">
-        <QuoteText quote={this.state.quote} />
-
-
-        <Grid container>
-          <Grid item>
-            <SocialIcons quote={this.state.quote} />
+        <Box p={4}>
+          <QuoteText quote={this.state.quote} />
+        
+          <Grid container justify="space-between" >
+              
+            <Grid item>
+                <SocialIcons quote={this.state.quote} />
+            </Grid>
+              
+            <Grid>
+              <Button variant="contained" color="primary"  onClick={this.getQuote}>
+                New quote
+              </Button>
+            </Grid>
+              
           </Grid>
-          
-          <Grid>
-            <Button variant="contained"  onClick={this.getQuote}>
-              New quote
-            </Button>
-          </Grid>
-          
-        </Grid>
+        </Box>
+
       </Paper>
     </Container>
     )
@@ -61,4 +70,4 @@ const mapStateToProps = (state) => {
   return {quotes: state.quote.quotes}
 }
 
-export default connect(mapStateToProps)(Presentational)
+export default withStyles(styles)(connect(mapStateToProps)(Presentational))

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Grid, IconButton } from "@material-ui/core"
+import Grid from "@material-ui/core/Grid"
 import TwitterIcon from "./TwitterIcon"
 import TumblrIcon from "./TumblrIcon"
 
@@ -13,7 +13,7 @@ export default (props) =>{
     
 
       <Grid item>
-        <TumblrIcon />
+        <TumblrIcon quote={props.quote} />
       </Grid>
     </Grid>
   )

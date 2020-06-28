@@ -16,9 +16,11 @@ export default (props) => {
     const classes = useStyles()
 
     return (
-        <IconButton  className={classes.round} title="Tweet the current quote" target="_blank" rel="noopener"
-            href={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp 
-            &text=${props.quote ? `"${props.quote.text}" — ${props.quote.author}` : ""}`}>
+        <IconButton aria-label="Tumblr" className={classes.round} title="Tweet the current quote" target="_blank" rel="noopener"
+        href={"https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=" + 
+        (props.quote ? props.quote.author : "") + 
+        "&content=" + (props.quote ? props.quote.text : "") + 
+        "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button"} >
     
             <FontAwesomeIcon icon={faTumblr} className="icon" />
         </IconButton>
