@@ -23,8 +23,9 @@ const styles = theme => createStyles({
 function App(props) {
   // setTimeout( () => store.dispatch(apiCall()), 3000)
   store.dispatch(apiCall())
+  console.log(props)
   return (
-    <ThemeProvider theme={theme()}>
+    <ThemeProvider theme={store.getState().theme()}>
       <CssBaseline />
       <Grid container justify="center" alignItems="center" className={props.classes.fullHeight}>
           

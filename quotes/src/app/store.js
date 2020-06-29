@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import quoteReducer from "../components/quoteApiCall"
+import quoteReducer from "../components/quoteApiCall";
+import changeTheme from "../components/changeTheme";
 
 export default configureStore({
   reducer: {
-    quote: quoteReducer
+    quote: quoteReducer,
+    theme: changeTheme
   },
 });

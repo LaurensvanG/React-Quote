@@ -24,7 +24,7 @@ const quoteSlice = createSlice({
     name: "quote",
     initialState: defaultState,
     reducers: {
-        [apiFetch]: (state, action) => state.fetching = true,
+        [apiFetch]: (state) => state.fetching = true,
     },
     extraReducers: {
         [apiCall.fulfilled]: (state, action) => {

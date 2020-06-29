@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default (props) => {
+    console.log(props)
     const classes = useStyles();
     const [quote, setQuote] = useState("")
     const [show, updateShow] = useState(true)
@@ -43,11 +44,13 @@ export default (props) => {
 
             <Typography variant="h1" className={classes.text} gutterBottom >
 
-                        <Fade in={true} timeout={3000} >
-                            <FormatQuoteRounded className={classes.quoteIcon} />
+                        <Fade in={true} timeout={2000} >
+                            <Box mr={1} display="inline">
+                                <FormatQuoteRounded className={classes.quoteIcon} />
+                            </Box>
                         </Fade>
         
-                        <Fade in={show} timeout={2000} mountOnEnter unmountOnExit >
+                        <Fade in={show} timeout={1000} mountOnEnter unmountOnExit >
                             <span >
                                 {quote.text ? quote.text : ""}
                             </span>

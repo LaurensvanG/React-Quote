@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { Paper, Grid, Button, Container, createStyles, withStyles, Box, Divider } from "@material-ui/core";
 import SocialIcons from "./SocialIcons";
 import QuoteText from "./QuoteText";
+import store from "../app/store";
+import { changeTheme } from "./changeTheme";
+import theme from "../styles/theme";
+
 
 const styles = theme => createStyles({
   marginGrid: {
@@ -23,7 +27,10 @@ class Presentational extends React.Component {
   
   // Set the "quote" in state to a random quote from "props.quotes"
   getQuote = () => { 
+    console.log(theme)
+    // store.dispatch(changeTheme())
     return (this.setState((state, props) => {
+      console.log(props)
       return {quote: props.quotes[Math.floor(Math.random() * props.quotes.length)],
       quotes: state.quotes}
     })
@@ -31,7 +38,7 @@ class Presentational extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(this.state.quote) {
+    if(this.props.quotes) {
       if(this.state.quote.text !== nextState.quote.text || this.props.quotes.text !== nextProps.quotes.text) {
         return true
       } else return false
@@ -43,18 +50,18 @@ class Presentational extends React.Component {
   
   // Get a first quote as soon as the quotes have been fetched and passed through the prop
   componentDidUpdate(prevProps) {
+    console.log(this.props)
     if(!prevProps.quotes[0])
         if(this.props.quotes !== undefined && this.props.quotes.length !== 0) this.getQuote();;
   }
 
   render () {
-    console.log("Quote", this.state.quote)
     return (
     <Container>
       <Paper elevation={3} id="quoteBox">
         <Box p={4} px={5}>
 
-          <QuoteText quote={this.state.quote} fade={this.state.fade} />
+          <QuoteText quote={this.state.quote} />
 
           &nbsp;
           <Divider />
