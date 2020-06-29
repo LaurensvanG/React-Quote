@@ -15,7 +15,6 @@ export const apiCall = createAsyncThunk(
     async () => {
         const response = await fetch("https://type.fit/api/quotes");
         const quotes = response.json();
-        // console.log("Quotes", quotes)
         return quotes
     }
 )

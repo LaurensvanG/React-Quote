@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Paper, Grid, Button, Container, createStyles, withStyles, Box } from "@material-ui/core";
+import { Paper, Grid, Button, Container, createStyles, withStyles, Box, Divider } from "@material-ui/core";
 import SocialIcons from "./SocialIcons";
 import QuoteText from "./QuoteText";
 
@@ -30,27 +30,43 @@ class Presentational extends React.Component {
     )
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(this.state.quote) {
+      if(this.state.quote.text !== nextState.quote.text || this.props.quotes.text !== nextProps.quotes.text) {
+        return true
+      } else return false
+    } else {
+      if(this.props.quotes)  return true;
+        else return false;
+    }
+  }
+  
   // Get a first quote as soon as the quotes have been fetched and passed through the prop
   componentDidUpdate(prevProps) {
-    if(prevProps.quotes !== this.props.quotes)
-    if(this.props.quotes !== undefined && this.props.quotes.length !== 0) this.getQuote()
+    if(!prevProps.quotes[0])
+        if(this.props.quotes !== undefined && this.props.quotes.length !== 0) this.getQuote();;
   }
 
   render () {
-
+    console.log("Quote", this.state.quote)
     return (
     <Container>
       <Paper elevation={3} id="quoteBox">
-        <Box p={4}>
-          <QuoteText quote={this.state.quote} />
-        
+        <Box p={4} px={5}>
+
+          <QuoteText quote={this.state.quote} fade={this.state.fade} />
+
+          &nbsp;
+          <Divider />
+          &nbsp;
+
           <Grid container justify="space-between" >
               
             <Grid item>
                 <SocialIcons quote={this.state.quote} />
             </Grid>
               
-            <Grid>
+            <Grid item>
               <Button variant="contained" color="primary"  onClick={this.getQuote}>
                 New quote
               </Button>

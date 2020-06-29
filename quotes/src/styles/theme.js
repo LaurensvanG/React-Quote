@@ -5,8 +5,8 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 export default theme => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const quoteFont = "'Mallana', 'Times', 'serif'"
-  const authorFont = "'Cormont Garamond', 'Garamond'"
+  const quoteFont = "'Mallanna', 'Times', 'serif'";
+  const authorFont = "'Cormont Garamond', 'Garamond', 'sans-serif'";
 
   return React.useMemo(
       () =>

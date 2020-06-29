@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
 import QuoteBox from "./components/QuoteBox"
-import { ThemeProvider, Grid, withStyles, createStyles, MuiThemeProvider, CssBaseline } from '@material-ui/core';
+import { ThemeProvider, Grid, withStyles, createStyles, CssBaseline } from '@material-ui/core';
 import theme from "./styles/theme"
 import store from "./app/store"
 import { apiCall } from "./components/quoteApiCall"
@@ -12,7 +11,6 @@ const styles = theme => createStyles({
         height: "100vh",
         margin: 0
       },
-
       "#root": {
         height: "100vh"
       }
@@ -23,8 +21,8 @@ const styles = theme => createStyles({
 })
 
 function App(props) {
+  // setTimeout( () => store.dispatch(apiCall()), 3000)
   store.dispatch(apiCall())
-  console.log(props)
   return (
     <ThemeProvider theme={theme()}>
       <CssBaseline />
