@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from "./app/store"
 
-import { ThemeProvider, Grid, withStyles, createStyles, CssBaseline, useMediaQuery } from '@material-ui/core';
+import { ThemeProvider, Grid, withStyles, createStyles, CssBaseline, useMediaQuery, Typography } from '@material-ui/core';
 import createTheme from "./styles/theme"
 import QuoteBox from "./components/QuoteBox"
 import { apiCall } from "./components/quoteApiCall"
@@ -13,8 +13,7 @@ const styles = theme => createStyles({
   "@global": {
       body: {
         height: "100vh",
-        margin: 0,
-        // transition: "all 1s"
+        margin: 0
       },
       "#root": {
         height: "100vh"
@@ -22,6 +21,10 @@ const styles = theme => createStyles({
     }, 
   "fullHeight": {
     height: "100%"
+  },
+  "sub": {
+    textAlign: "center",
+    fontSize: ".8em"
   }
 })
 
@@ -46,6 +49,14 @@ function App(props) {
           
         <Grid item xs={12} sm={8} lg={6} xl={4}>
           <QuoteBox />
+
+          < br />
+          < br />
+
+          <Typography variant="subtitle1" className={props.classes.sub}>
+            Designed and Coded by<br/>
+            Laurens van Giersbergen
+          </Typography>
         </Grid>
 
       </Grid>
