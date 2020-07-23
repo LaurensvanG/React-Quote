@@ -7,8 +7,9 @@ import { faTumblr } from '@fortawesome/free-brands-svg-icons'
 
 const useStyles = makeStyles(theme => ({
     round: {
-      width: "1em"
-    }
+      width: "1em",
+      color: theme.palette.type === "dark" ? theme.palette.secondary.main : theme.palette.primary.main
+    }     
   }));
 
 

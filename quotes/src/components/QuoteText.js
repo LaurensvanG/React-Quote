@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Typography, makeStyles, Box, Fade } from "@material-ui/core";
 import FormatQuoteRounded from "@material-ui/icons/FormatQuoteRounded";
+import { connect } from "react-redux";
 
+import "./Animation.css"
 
 const useStyles = makeStyles(theme => ({
-    "quoteIcon": {
+    quoteIcon: {
         transform: "scale(-1, -1) translateY(-.25em)",
         fontSize: "1.2em",
-        
+        color: theme.palette.primary.main,
+        transition: "color 2s, fontSize 2s"
     },
-    "text": {
-        textAlign: "center"
+    
+    text: {
+        textAlign: "center",
+        transition: "color 1.5s"
     },
-    "author": {
+    author: {
         fontStyle: "italic",
-        textAlign: "end"
+        textAlign: "end",
+        transition: "color 1.5s, opacity 2s"
     },
-    "box": {
+    box: {
         
-    }
+    } 
   }));
 
 
 
-export default (props) => {
-    console.log(props)
+const QuoteText = (props) => {
+    console.log(props.fetching)
     const classes = useStyles();
     const [quote, setQuote] = useState("")
     const [show, updateShow] = useState(true)
@@ -32,39 +38,39 @@ export default (props) => {
         updateShow(false);
         setTimeout(() => {
             updateShow(true)
-            setQuote(props.quote)}, 1000);
+            setQuote(props.quote)}, 2000);
         return () => updateShow(false)
     }, [props.quote])
 
 
-    return (
-
-        
+    return ( 
         <Box className={classes.box} >
 
             <Typography variant="h1" className={classes.text} gutterBottom >
 
-                        <Fade in={true} timeout={2000} >
-                            <Box mr={1} display="inline">
-                                <FormatQuoteRounded className={classes.quoteIcon} />
-                            </Box>
-                        </Fade>
+                <FormatQuoteRounded className={
+                    classes.quoteIcon + " " + (props.fetching ? "fetching" : "")
+                } />
+                            
         
-                        <Fade in={show} timeout={1000} mountOnEnter unmountOnExit >
-                            <span >
-                                {quote.text ? quote.text : ""}
-                            </span>
-                        </Fade>
+                <Fade in={show} timeout={1000} >
+                    <span >
+                        {quote.text ? quote.text : ""}
+                    </span>
+                </Fade>
 
             </Typography>
 
-            <Typography variant="h4" id="author" className={classes.author} >
-                {quote.author ? "— " + quote.author : ""}
-            </Typography>
+            <Fade in={(quote.author ? true : false) && show} timeout={1500} >
+                <Typography variant="h4" id="author" className={classes.author} >
+                    {quote.author ? "— " + quote.author : ""}
+                </Typography>
+            </Fade>
             
-        </Box>
-        
-        
+        </Box>  
     )
 }
 
+
+const mapStateToProps = (state) => { return { fetching: state.quote.fetching } }
+export default connect(mapStateToProps)(QuoteText)

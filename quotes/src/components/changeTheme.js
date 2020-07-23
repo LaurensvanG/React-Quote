@@ -1,20 +1,27 @@
-import React from "react";
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import theme from "../styles/theme";
 import getColourStyle from "../styles/rotatingStyles"
-import { createMuiTheme } from "@material-ui/core";
+
 
 export const changeTheme = createAction("theme/changeTheme")
+export const changeType = createAction("theme/changeType")
 
 
 const changeThemeSlice = createSlice({
     name: "theme",
-    initialState: theme,
-    reducers: {
-        [changeTheme]: (state) => {
-            console.log(state.theme)
-            const newTheme = function(type){ createMuiTheme(getColourStyle(type))};
-            state.theme = newTheme
+    initialState: {
+        type: "dark",
+        light: "#303030",
+        dark: "#3f51b5"
+    },
+    extraReducers: {
+        [changeTheme]: state => {
+            const [light, dark] = getColourStyle(state.type);
+            state.dark = dark;
+            state.light = light;
+        },
+        [changeType]: (state, action) => {
+            if(typeof action.payload === "boolean") state.type = action.payload === true ? "light" : "dark"
+                else state.type = state.type === "dark" ? "light" : "dark";
         }
     }
 })

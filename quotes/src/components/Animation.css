@@ -1,0 +1,32 @@
+.fetching-enter {
+    opacity: 0;
+}
+.fetching-enter-active {
+    opacity: 1;
+    transform: scaleX(5)  translateY(-.25em);
+    transition: all 4s;
+    
+}
+.fetching-enter-done {
+    transform: scale(-1, -1) translateY(-.25em);
+    font-size: 1.2em;
+    transition: color 2s fontSize 2s trnansform 1s;
+    
+}
+.fetching-exit {
+    opacity: 1;
+}
+.fetching-exit-active {
+opacity: 0;
+transition: opacity 200ms;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.fetching {
+    animation: spin 4s cubic-bezier(0.5, 0.1, 0.4, 0.99) infinite;
+}
