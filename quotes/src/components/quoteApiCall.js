@@ -1,4 +1,4 @@
-const { createAction, createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 
 // Set default state
@@ -8,14 +8,11 @@ const defaultState = {
 }
 
 // Create api call actions
-export const apiFetch = createAction("quote/fetchApi")
-
 export const apiCall = createAsyncThunk(
     "quote/callApi",
     async () => {
         const response = await fetch("https://type.fit/api/quotes");
         const quotes = response.json();
-        // console.log("Quotes", quotes)
         return quotes
     }
 )
@@ -24,10 +21,9 @@ export const apiCall = createAsyncThunk(
 const quoteSlice = createSlice({
     name: "quote",
     initialState: defaultState,
-    reducers: {
-        [apiFetch]: (state, action) => state.fetching = true,
-    },
     extraReducers: {
+        [apiCall.pending]: state => {state.fetching = true},
+        [apiCall.rejected]: state => {state.fetching = true},
         [apiCall.fulfilled]: (state, action) => {
             state.fetching = false
             state.quotes = action.payload
